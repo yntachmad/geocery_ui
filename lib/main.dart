@@ -33,6 +33,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           'GEOCERY UI',
           style: TextStyle(color: Colors.black),
@@ -46,10 +47,33 @@ class _MainPageState extends State<MainPage> {
         actions: [
           Row(
             children: [
-              Stack(),
               IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.menu),
+                onPressed: (() {}),
+                icon: const Icon(Icons.search),
+              ),
+              Stack(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.shopping_cart_rounded),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 3,
+                    child: Container(
+                      height: 20,
+                      width: 20,
+                      decoration: const BoxDecoration(
+                          color: Colors.red, shape: BoxShape.circle),
+                      child: const Center(
+                          child: Text(
+                        "2",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w100),
+                      )),
+                    ),
+                  ),
+                ],
               ),
             ],
           )
