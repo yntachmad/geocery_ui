@@ -44,16 +44,13 @@ class _MainPageState extends State<MainPage> {
           color: Colors.black,
         ),
         actions: [
-          const Row(
+          Row(
             children: [
-              // IconButton(
-              //   onPressed: (){},
-              //   icon: Icon(
-              //     Icons.search,
-              //     color: Colors.black,
-              //   ),
-              // ),
-              Stack()
+              Stack(),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.menu),
+              ),
             ],
           )
         ],
