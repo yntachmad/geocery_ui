@@ -105,7 +105,7 @@ class _MainPageState extends State<MainPage> {
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
             crossAxisCount: 2,
-            childAspectRatio: 0.7,
+            childAspectRatio: 0.6,
           ),
           itemCount: allData.length,
           itemBuilder: (context, index) {
