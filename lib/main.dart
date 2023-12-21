@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_geocery_ui/bloc/item_card.dart';
+import 'package:flutter_geocery_ui/item_widget.dart';
+
+import 'data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,14 +14,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return BlocProvider(
+      create: (context) => ItemCard(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Geocery UI',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const MainPage(),
       ),
-      home: const MainPage(),
     );
   }
 }
@@ -29,6 +37,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final data = Product(
+      name: 'Bayam',
+      price: '2.000',
+      quantity: '1 Ikat',
+      image: 'assets/img1.png',
+      description:
+          'Secara umum sayuran dan buah-buahan merupakan sumber berbagai vitamin, mineral');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,12 +79,16 @@ class _MainPageState extends State<MainPage> {
                       height: 20,
                       width: 20,
                       decoration: const BoxDecoration(
-                          color: Colors.red, shape: BoxShape.circle),
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
                       child: const Center(
                           child: Text(
                         "2",
                         style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w100),
+                          color: Colors.white,
+                          fontWeight: FontWeight.w100,
+                        ),
                       )),
                     ),
                   ),
@@ -79,6 +98,66 @@ class _MainPageState extends State<MainPage> {
           )
         ],
       ),
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            crossAxisCount: 2,
+            childAspectRatio: 0.7,
+          ),
+          itemCount: allData.length,
+          itemBuilder: (context, index) {
+            return ItemWidget(product: allData[index]);
+          },
+        ),
+      ),
     );
   }
 }
+
+final List<Product> allData = [
+  Product(
+      name: 'Bayam',
+      price: '2.000',
+      quantity: '1 Ikat',
+      image: 'assets/img1.png',
+      description:
+          'Secara umum sayuran dan buah-buahan merupakan sumber berbagai vitamin, mineral'),
+  Product(
+      name: 'Alpukat',
+      price: '4.000',
+      quantity: '1 kg',
+      image: 'assets/img2.png',
+      description:
+          'Secara umum sayuran dan buah-buahan merupakan sumber berbagai vitamin, mineral'),
+  Product(
+      name: 'Jagung',
+      price: '9.500',
+      quantity: '1 Bungkus',
+      image: 'assets/img3.png',
+      description:
+          'Secara umum sayuran dan buah-buahan merupakan sumber berbagai vitamin, mineral'),
+  Product(
+      name: 'Kiwi',
+      price: '4.500',
+      quantity: '1 kg',
+      image: 'assets/img4.png',
+      description:
+          'Secara umum sayuran dan buah-buahan merupakan sumber berbagai vitamin, mineral'),
+  Product(
+      name: 'Jeruk',
+      price: '3.500',
+      quantity: '1 kg',
+      image: 'assets/img5.png',
+      description:
+          'Secara umum sayuran dan buah-buahan merupakan sumber berbagai vitamin, mineral'),
+  Product(
+      name: 'Apel',
+      price: '4.500',
+      quantity: '1 kg',
+      image: 'assets/img6.png',
+      description:
+          'Secara umum sayuran dan buah-buahan merupakan sumber berbagai vitamin, mineral'),
+];
